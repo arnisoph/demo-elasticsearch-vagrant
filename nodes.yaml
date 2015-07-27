@@ -1,0 +1,43 @@
+---
+defaults:
+  domain: elk-demo.local.arnoldbechtoldt.com
+  base_box: chef/debian-7.8 
+  osfam: debian
+  synced_folders:
+    # Common folders
+    - src: assets/scripts/provision
+      dst: /vagrant/scripts
+    - src: ../shared/misc
+      dst: /vagrant/shared/misc
+    # Salt related folders
+    - src: ../shared/salt/devenv
+      dst: /vagrant/shared/salt/devenv
+    - src: ../shared/salt/assets/salt-modules/_modules
+      dst: /vagrant/salt/_modules
+    - src: ../shared/salt/assets/salt-modules/_states
+      dst: /vagrant/salt/_states
+  provision:
+    - name: basic
+    - name: saltstack_install_bootstrap
+    - name: saltstack_formulas
+      formulas:
+        - name: elasticsearch
+          base_dir: ../shared/salt/assets/saltstack-elasticsearch-formula
+        - name: git
+          base_dir: ../shared/salt/assets/saltstack-git-formula
+        - name: java
+          base_dir: ../shared/salt/assets/saltstack-java-formula
+        - name: kibana
+          base_dir: ../shared/salt/assets/saltstack-kibana-formula
+        - name: repos
+          base_dir: ../shared/salt/assets/saltstack-repos-formula
+        - name: salt
+          base_dir: ../shared/salt/assets/saltstack-salt-formula
+        - name: sysctl
+          base_dir: ../shared/salt/assets/saltstack-sysctl-formula
+        - name: tools
+          base_dir: ../shared/salt/assets/saltstack-tools-formula
+    - name: saltstack_config
+    - name: saltstack_services
+nodes:
+  elastic1: {}
