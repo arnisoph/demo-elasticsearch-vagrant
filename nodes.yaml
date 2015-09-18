@@ -19,6 +19,8 @@ defaults:
   provision:
     - name: basic
     - name: saltstack_install_bootstrap
+      env:
+        params: '-Z,-P,-M,git,v2015.8.0'
     - name: saltstack_formulas
       formulas:
         - name: elasticsearch
