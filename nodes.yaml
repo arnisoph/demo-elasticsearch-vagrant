@@ -1,7 +1,7 @@
 ---
 defaults:
   domain: elk-demo.local.arnoldbechtoldt.com
-  base_box: chef/debian-7.8 
+  base_box: puppetlabs/debian-7.8-64-nocm
   osfam: debian
   synced_folders:
     # Common folders
