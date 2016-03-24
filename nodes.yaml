@@ -20,7 +20,7 @@ defaults:
     - name: basic
     - name: saltstack_install_bootstrap
       env:
-        params: '-Z,-P,-M,git,v2015.8.3'
+        params: '-g https://github.com/saltstack/salt.git,-Z,-P,-M,git,v2015.8.3'
     - name: saltstack_formulas
       formulas:
         - name: elasticsearch
